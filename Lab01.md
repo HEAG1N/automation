@@ -24,7 +24,7 @@ Să analizăm cele mai importante părți din scriptul disk_usage.sh.
 
 Scriptul are nevoie de cel puțin două argumente pentru a funcționa: calea către director și dimensiunea maximă permisă. Al treilea argument (pragul) este opțional.
 
-    Verificarea argumentelor obligatorii: Scriptul verifică mai întâi dacă a primit cel puțin două argumente. Dacă nu, afișează o eroare și se oprește.
+ Verificarea argumentelor obligatorii: Scriptul verifică mai întâi dacă a primit cel puțin două argumente. Dacă nu, afișează o eroare și se oprește.
     Bash
 
 if [ "$#" -lt 2 ]; then
@@ -57,7 +57,7 @@ Bash
 
 Scriptul creează un mesaj detaliat și îl adaugă la sfârșitul fișierului disk_usage.log.
 
-    Comanda echo >>: Data și ora curentă sunt adăugate la mesaj, iar operatorul >> asigură că informația este adăugată la fișier fără a șterge conținutul anterior.
+ Comanda echo >>: Data și ora curentă sunt adăugate la mesaj, iar operatorul >> asigură că informația este adăugată la fișier fără a șterge conținutul anterior.
     Bash
 
     LOG_FILE="disk_usage.log"
@@ -73,14 +73,42 @@ La final, scriptul compară procentajul calculat cu pragul stabilit.
     Condiția if: Dacă procentajul utilizat ($USAGE_PERCENT) este mai mare (-gt) decât pragul ($THRESHOLD), atunci se compune și se trimite un e-mail de avertizare folosind comanda mail.
     Bash
 
-if [ "$USAGE_PERCENT" -gt "$THRESHOLD" ]; then
+    if [ "$USAGE_PERCENT" -gt "$THRESHOLD" ]; then
     echo "Warning: Disk usage ($USAGE_PERCENT%) has exceeded the threshold of $THRESHOLD%."
 
     EMAIL_SUBJECT="Disk Usage Alert for $MONITOR_DIR"
     EMAIL_BODY="Warning: The directory '$MONITOR_DIR' is using $USAGE_PERCENT% of its allocated space..."
 
     echo -e "$EMAIL_BODY" | mail -s "$EMAIL_SUBJECT" "$ADMIN_EMAIL"
-fi
+    fi
 
 # Exemple de Utilizare
 
+Introducem adresa de email.
+
+<img width="974" height="89" alt="image" src="https://github.com/user-attachments/assets/c5ee860c-8911-4c6d-bc12-1fe6941a6fe6" />
+
+Pentru a rula scriptul, mai întâi trebuie să-l faci executabil cu comanda: chmod +x disk_usage.sh
+
+<img width="774" height="48" alt="image" src="https://github.com/user-attachments/assets/e6bdd3ba-ec73-4e2a-aa60-39eef591038f" />\
+
+Monitorizăm directorul /var/log, care are o limită alocată de 500 MB. Scriptul va trimite o alertă dacă se ocupă mai mult de 80% din această valoare (400 MB).
+
+<img width="974" height="148" alt="image" src="https://github.com/user-attachments/assets/6fde6fd3-0f9e-4d6b-a306-9d458f34e752" />
+
+# Concluzii
+În cadrul acestei lucrări practice, a fost dezvoltat cu succes un script shell (disk_usage.sh) capabil să automatizeze o sarcină esențială de administrare a sistemelor Linux: monitorizarea spațiului pe disc.
+
+Obiectivul principal a fost atins prin implementarea unui script funcțional care îndeplinește următoarele sarcini:
+
+Prelucrează argumente din linia de comandă, inclusiv argumente obligatorii (directorul și dimensiunea maximă) și opționale (pragul de alertă).
+
+Utilizează comenzi standard Linux (du, cut, date) pentru a colecta și prelucra date în mod eficient.
+
+Implementează logică condițională (if) pentru a evalua starea sistemului și a lua decizii, cum ar fi trimiterea unei alerte pe e-mail.
+
+#Surse
+
+https://www.tldp.org/
+
+ https://www.gnu.org/software/bash/manual/
