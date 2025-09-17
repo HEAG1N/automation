@@ -1,0 +1,25 @@
+IW01: Scrierea unui script shell simplu pentru automatizarea sarcinilor
+
+Obiectiv
+
+Învațăm să cream și să executam scripturi Shell simple pentru a automatiza sarcini de rutină în sistemul de operare Linux.
+
+Ce Face Scriptul disk_usage.sh?
+
+Acest script este un instrument automatizat pentru a monitoriza spațiul pe disc utilizat de un anumit director (folder).
+
+Pe scurt, el face trei lucruri:
+
+    Calculează cât spațiu (în Megabytes) ocupă directorul specificat.
+
+    Înregistrează (scrie) această informație într-un fișier-jurnal numit disk_usage.log.
+
+    Trimite o alertă pe e-mail dacă spațiul ocupat depășește un anumit prag procentual (de exemplu, 80%).
+
+Cum Funcționează
+
+Preluarea Argumentelor
+
+Scriptul are nevoie de cel puțin două argumente pentru a funcționa: calea către director și dimensiunea maximă permisă. Al treilea argument (pragul) este opțional.
+
+Verificarea argumentelor obligatorii: Scriptul verifică mai întâi dacă a primit cel puțin două argumente. Dacă nu, afișează o eroare și se oprește.
