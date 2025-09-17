@@ -107,7 +107,7 @@ Utilizează comenzi standard Linux (du, cut, date) pentru a colecta și prelucra
 
 Implementează logică condițională (if) pentru a evalua starea sistemului și a lua decizii, cum ar fi trimiterea unei alerte pe e-mail.
 
-#Surse
+# Surse
 
 https://www.tldp.org/
 
