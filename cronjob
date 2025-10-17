@@ -1,0 +1,2 @@
+# This will run every minute for testing
+* * * * * python3 /app/currency_exchange_rate.py MDL USD $(date -d "last friday" +\%Y-\%m-\%d) >> /var/log/cron.log 2>&1

@@ -1,0 +1,22 @@
+services:
+  # Note the two-space indentation for the service name
+  api_server:
+    image: php:8.3-apache
+    container_name: php_api_server
+    volumes:
+      - ./app:/var/www/html
+    env_file:
+      - .env
+    restart: unless-stopped
+
+  # This service must also be indented by two spaces
+  cron_runner:
+    build: .
+    container_name: python_cron_runner
+    env_file:
+      - .env
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+    depends_on:
+      - api_server
