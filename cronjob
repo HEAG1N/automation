@@ -1,2 +1,7 @@
-# This will run every minute for testing
-* * * * * python3 /app/currency_exchange_rate.py MDL USD $(date -d "last friday" +\%Y-\%m-\%d) >> /var/log/cron.log 2>&1
+# Daily job to get MDL to EUR exchange rate for the previous day at 6:00 AM
+0 6 * * * python3 /app/currency_exchange_rate.py MDL EUR $(date -d "yesterday" +\%Y-\%m-\%d) >> /var/log/cron.log 2>&1
+
+# Weekly job on Friday at 5:00 PM to get MDL to USD rate for the previous Friday
+0 17 * * 5 python3 /app/currency_exchange_rate.py MDL USD $(date -d "last friday" +\%Y-\%m-\%d) >> /var/log/cron.log 2>&1
+
+# An empty line is required at the end of this file for cron to work correctly
